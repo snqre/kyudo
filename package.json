@@ -1,0 +1,29 @@
+{
+	"name": "kyudo",
+	"description": "",
+	"version": "1.0.1",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"dependencies": {
+		"assert": "^2.1.0"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"typescript": "^5.6.3",
+		"tsup": "^8.3.5"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
+		"build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
+		"postbuild": "rimraf tsconfig.types.tsbuildinfo"
+	},
+	"files": [
+		"dist/*.js",
+		"dist/*.d.ts"
+	]
+}
